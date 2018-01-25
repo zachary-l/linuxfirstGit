@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        ">
+    <!--开启注解支持 通常不需要配置，因为使用了component-scan会默认开启-->
+    <!--<context:annotation-config/>-->
+
+    <!--启动注解，并扫描文件包路径-->
+    <!--context:component-scan会自动启动注解，因此上面的annotation-config可以不需要配置-->
+    <context:component-scan base-package="edu.nf"/>
+
+    <!--可以，分隔一个个扫描-->
+    <!--<context:component-scan base-package="edu.nf.controller,edu.nf.dao"/>-->
+
+</beans>

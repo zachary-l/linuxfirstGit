@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="p" class="edu.nf.People">
+    <!--构造方法注入值,这里指定value属性进行赋值
+        注意：如果仅仅只有value属性，那么赋值的顺序
+        必须跟构造方法的参数顺序一样
+    -->
+   <!-- <constructor-arg value="zachary"/>
+    <constructor-arg value="20"/>
+    -->
+    <!--指定index属性-->
+    <!--<constructor-arg index="0" value="zachary"/>
+    <constructor-arg index="1" value="20"/>-->
+
+    <!--指定属性名属性-->
+    <!--<constructor-arg name="name" value="zachary"/>
+    <constructor-arg name="age" value="20"/>-->
+
+    <!--指定type属性，根据参数的类型进行赋值-->
+    <!--<constructor-arg type="java.lang.String" value="zachary"/>
+    <constructor-arg type="int" value="20"/>-->
+
+    <!--注入一个bean实例，ref属性表示引用容器中某一个bean的id
+        ioc容器会调用getbean的方式找到相应的实例，并通过构造方法注入到People-->
+    <!--<constructor-arg ref="tools"/>-->
+
+    <!--使用set方法注入 ,name指定的是set方法去掉set之后将首字母变为小写的一个名称
+        ，ref引用容器中对应的bean的id-->
+    <property name="tools" ref="tools"/>
+</bean>
+
+    <bean id="tools" class="edu.nf.Tools"/>
+
+
+    <bean id="userDao" class="edu.nf.dao.impl.UserDaoImpl"/>
+
+    <bean id="userService" class="edu.nf.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="userController" class="edu.nf.controller.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+</beans>
